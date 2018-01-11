@@ -519,7 +519,7 @@ static int constructConnPayload(BUFFER_HANDLE ctrlPacket, const MQTT_CLIENT_OPTI
                 }
                 if (trace_log != NULL)
                 {
-                    (void)STRING_sprintf(trace_log, " %zu", packet[CONN_FLAG_BYTE_OFFSET]);
+                    (void)STRING_sprintf(trace_log, " %u", packet[CONN_FLAG_BYTE_OFFSET]);
                     (void)STRING_concat_with_STRING(trace_log, connect_payload_trace);
                     STRING_delete(connect_payload_trace);
                 }
@@ -560,17 +560,33 @@ static int prepareheaderDataInfo(MQTTCODEC_INSTANCE* codecData, uint8_t remainLe
                 }
             } while ((encodeByte & NEXT_128_CHUNK) != 0);
 
-            if (totalLen > 0)
-            {
-                codecData->headerData = BUFFER_new();
-                (void)BUFFER_pre_build(codecData->headerData, totalLen);
-                codecData->bufferOffset = 0;
-            }
             codecData->codecState = CODEC_STATE_VAR_HEADER;
 
             // Reset remainLen Index
             codecData->remainLenIndex = 0;
             memset(codecData->storeRemainLen, 0, 4 * sizeof(uint8_t));
+
+            if (totalLen > 0)
+            {
+                codecData->bufferOffset = 0;
+                codecData->headerData = BUFFER_new();
+                if (codecData->headerData == NULL)
+                {
+                    /* Codes_SRS_MQTT_CODEC_07_035: [ If any error is encountered then the packet state will be marked as error and mqtt_codec_bytesReceived shall return a non-zero value. ] */
+                    LogError("Failed BUFFER_new");
+                    result = __FAILURE__;
+                }
+                else
+                {
+                    if (BUFFER_pre_build(codecData->headerData, totalLen) != 0)
+                    {
+                        /* Codes_SRS_MQTT_CODEC_07_035: [ If any error is encountered then the packet state will be marked as error and mqtt_codec_bytesReceived shall return a non-zero value. ] */
+                        LogError("Failed BUFFER_pre_build");
+                        result = __FAILURE__;
+                    }
+
+                }
+            }
         }
     }
     return result;
@@ -803,7 +819,7 @@ BUFFER_HANDLE mqtt_codec_publish(QOS_VALUE qosValue, bool duplicateMsg, bool ser
                             (void)memcpy(iterator, msgBuffer, buffLen);
                             if (trace_log)
                             {
-                                STRING_sprintf(varible_header_log, " | PAYLOAD_LEN: %zu", buffLen);
+                                STRING_sprintf(varible_header_log, " | PAYLOAD_LEN: %u", buffLen);
                             }
                         }
                     }
@@ -1116,3 +1132,4 @@ int mqtt_codec_bytesReceived(MQTTCODEC_HANDLE handle, const unsigned char* buffe
     }
     return result;
 }
+

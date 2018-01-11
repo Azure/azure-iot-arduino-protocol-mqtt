@@ -321,3 +321,4 @@ const APP_PAYLOAD* mqttmessage_getApplicationMsg(MQTT_MESSAGE_HANDLE handle)
     }
     return result;
 }
+

@@ -6,14 +6,9 @@
 #include <stdio.h>
 #include <stdint.h>
 
-/* This sample uses the _LL APIs of iothub_client for example purposes.
-That does not mean that MQTT only works with the _LL APIs.
-Simply changing the using the convenience layer (functions not having _LL)
-and removing calls to _DoWork will yield the same results. */
-
 #include "AzureIoTHub.h"
 #include "iot_configs.h"
-
+#include "sample.h"
 
 /*String containing Hostname, Device Id & Device Key in the format:             */
 /*  "HostName=<host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"    */
@@ -164,7 +159,7 @@ void simplesample_mqtt_run(void)
                     (void)printf("failure to set option \"TrustedCerts\"\r\n");
                 }
 #endif // SET_TRUSTED_CERT_IN_SAMPLES
-                
+
 
                 ContosoAnemometer* myWeather = CREATE_MODEL_INSTANCE(WeatherStation, ContosoAnemometer);
                 if (myWeather == NULL)
@@ -214,3 +209,10 @@ void simplesample_mqtt_run(void)
         platform_deinit();
     }
 }
+
+
+void sample_run(void)
+{
+    simplesample_mqtt_run();
+}
+

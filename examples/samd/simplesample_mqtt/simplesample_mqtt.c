@@ -214,3 +214,9 @@ void simplesample_mqtt_run(void)
         platform_deinit();
     }
 }
+
+void sample_run(void)
+{
+    simplesample_mqtt_run();
+}
+

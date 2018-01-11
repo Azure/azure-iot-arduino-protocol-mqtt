@@ -20,7 +20,7 @@
 /** 
  * Choose the transport protocol
  */
-// #define IOT_CONFIG_MQTT                 // uncomment this line for MQTT
-#define IOT_CONFIG_HTTP              // uncomment this line for HTTP
+#define IOT_CONFIG_MQTT                 // uncomment this line for MQTT
+// #define IOT_CONFIG_HTTP              // uncomment this line for HTTP
 
 #endif /* IOT_CONFIGS_H */
