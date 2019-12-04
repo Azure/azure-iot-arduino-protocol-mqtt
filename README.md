@@ -1,3 +1,7 @@
-# Azure IoT Currently Does Not Support Arduino. 
+#### Azure IoT Protocol MQTT Library source files
 
-Please refer to the [Espressif Azure IoT GitHub repository](https://github.com/espressif/esp-azure) to use the ESP32 or ESP8266 directly with Azure IoT.
+This is the location of the Arduino-specific source files for the
+[AzureIoTProtocol_MQTT Arduino published library](https://github.com/Azure/azure-iot-arduino-protocol-mqtt). 
+
+Complete information for contributing to the Azure IoT Arduino libraries
+can be found [here](https://github.com/Azure/azure-iot-pal-arduino).
