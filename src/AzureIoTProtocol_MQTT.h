@@ -6,6 +6,6 @@
 
 #include "azure_umqtt_c/mqtt_client.h"
 
-#define AzureIoTProtocolMQTTVersion "1.5.0"
+#define AzureIoTProtocolMQTTVersion "1.6.0"
 
 #endif //AZUREIOTPROTOCOLMQTT_H
