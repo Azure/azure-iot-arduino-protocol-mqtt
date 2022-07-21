@@ -8,7 +8,7 @@
 >
 > _If you’re looking for an Arduino Library you should use the new version: [aka.ms/arduino](https://aka.ms/arduino)_
 >
->_You can find more information about it in this [IoT Techcommunity blog post](https://techcommunity.microsoft.com/t5/internet-of-things-blog/arduino-library-for-azure-iot/ba-p/3034455)._
+>_You can find more information about it in this [IoT Tech Community blog post](https://techcommunity.microsoft.com/t5/internet-of-things-blog/arduino-library-for-azure-iot/ba-p/3034455)._
 >
 
 This is the location of the Arduino-specific source files for the
